@@ -1,0 +1,36 @@
+main.cpp
+
+#include <GL/glut.h>
+
+float red = 0.0f;
+
+void timer(int value) {
+    red += 0.01f;
+    if (red > 1.0f) red = 0.0f;
+    glutPostRedisplay();
+    glutTimerFunc(50, timer, 0);
+}
+
+void display() {
+    glClearColor(red, 0.2f, 0.8f, 1.0f); // arka plan rengi zamanla değişiyor
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    glBegin(GL_TRIANGLES);
+        glColor3f(1, 1, 1);
+        glVertex2f(-0.3f, -0.3f);
+        glVertex2f(0.3f, -0.3f);
+        glVertex2f(0.0f, 0.3f);
+    glEnd();
+
+    glFlush();
+}
+
+int main(int argc, char** argv) {
+    glutInit(&argc, argv);
+    glutCreateWindow("Geçişli Arka Plan");
+    glutInitWindowSize(800, 600);
+    glutDisplayFunc(display);
+    glutTimerFunc(0, timer, 0);
+    glutMainLoop();
+    return 0;
+}

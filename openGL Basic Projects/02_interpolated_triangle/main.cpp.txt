@@ -1,0 +1,28 @@
+main.cpp
+
+#include <GL/glut.h>
+
+void display() {
+    glClear(GL_COLOR_BUFFER_BIT);
+    glShadeModel(GL_SMOOTH); // interpolasyon aktif
+
+    glBegin(GL_TRIANGLES);
+        glColor3f(1, 0, 0); // köşe 1 - kırmızı
+        glVertex2f(-0.7f, -0.5f);
+        glColor3f(0, 1, 0); // köşe 2 - yeşil
+        glVertex2f(0.7f, -0.5f);
+        glColor3f(0, 0, 1); // köşe 3 - mavi
+        glVertex2f(0.0f, 0.7f);
+    glEnd();
+
+    glFlush();
+}
+
+int main(int argc, char** argv) {
+    glutInit(&argc, argv);
+    glutCreateWindow("Renk Geçişli Üçgen");
+    glutInitWindowSize(800, 600);
+    glutDisplayFunc(display);
+    glutMainLoop();
+    return 0;
+}
